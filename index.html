@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: "Rubik", sans-serif;
+            background-color: #1d1a21;
+            color: #fff;
+            margin: 50px;
+        }
+
+
+        .info {
+            margin-bottom: 50px;
+        }
+
+        .orange {
+            color: #ff4f00;
+        }
+
+        .image-category {
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .image-category img {
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform: scale(1);
+        }
+
+        .image-category img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px 5px #845EC2;
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            margin: 10px 0;
+            margin-top: 20px;
+            color: #845EC2;
+        }
+
+        .category-title:hover {
+            color: #b8a4dd;
+        }
+
+        .full-screen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1d1a21cc;
+
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            backdrop-filter: blur(1px);
+        }
+
+        .full-screen-image {
+            max-width: 90%;
+            max-height: 80%;
+            box-shadow: 0 0 10px 5px #845EC2;
+            animation: wow 5s infinite;
+        }
+
+        @keyframes wow {
+            50% {box-shadow: 0 0 15px 10px #845EC2;}
+        }
+
+        .download-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 12px;
+            background-color: #fff;
+            color: #000;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .file-info {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .file-name {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Welcome to the <a class="orange" href="https://orangexarot.github.io">OrangeXarot</a>'s Wallpapers Collection</h1>
+<p class="info">Live, Laugh, Lemonade.</p>
+
+<div class="image-category"><div class="category-title">Computer &gt; Homepage</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Alastor.jpg" alt="Alastor.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.79 MB"><br>Alastor.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/AmityAndLuz.png" alt="AmityAndLuz.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.11 MB"><br>AmityAndLuz.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/BitesTheDust.png" alt="BitesTheDust.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.89 MB"><br>BitesTheDust.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/BlachHoleWH.png" alt="BlachHoleWH.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.46 MB"><br>BlachHoleWH.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/BlackHole.png" alt="BlackHole.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.92 MB"><br>BlackHole.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Brimstone.png" alt="Brimstone.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.20 MB"><br>Brimstone.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/CuriousGeorgeShaded.png" alt="CuriousGeorgeShaded.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.64 MB"><br>CuriousGeorgeShaded.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/CyberPunk.jpg" alt="CyberPunk.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.39 MB"><br>CyberPunk.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/DarthVaderBetter.png" alt="DarthVaderBetter.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.62 MB"><br>DarthVaderBetter.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/DavidEdited.jpg" alt="DavidEdited.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.23 MB"><br>DavidEdited.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/DrHouse.png" alt="DrHouse.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.71 MB"><br>DrHouse.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/DrHouse2.jpeg" alt="DrHouse2.jpeg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.32 MB"><br>DrHouse2.jpeg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/FNaFF.jpg" alt="FNaFF.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.04 MB"><br>FNaFF.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/HazbinHotel.png" alt="HazbinHotel.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.29 MB"><br>HazbinHotel.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/HelluvaBoss.jpg" alt="HelluvaBoss.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.56 MB"><br>HelluvaBoss.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/HelluvaBossDark.png" alt="HelluvaBossDark.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.19 MB"><br>HelluvaBossDark.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Hooty.png" alt="Hooty.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.78 MB"><br>Hooty.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Josuke.png" alt="Josuke.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.61 MB"><br>Josuke.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/King.png" alt="King.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.67 MB"><br>King.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/KurzgesagtBH1.png" alt="KurzgesagtBH1.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.95 MB"><br>KurzgesagtBH1.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/KurzgesagtBH2.png" alt="KurzgesagtBH2.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.06 MB"><br>KurzgesagtBH2.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/KurzgesagtMelt.png" alt="KurzgesagtMelt.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="3840" data-height="2160" data-size="1.97 MB"><br>KurzgesagtMelt.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Lucyna.png" alt="Lucyna.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.57 MB"><br>Lucyna.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Mangle.png" alt="Mangle.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.11 MB"><br>Mangle.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Midjourney.jpg" alt="Midjourney.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="2000" data-height="1125" data-size="2.16 MB"><br>Midjourney.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Minecraft.png" alt="Minecraft.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1366" data-height="768" data-size="2.33 MB"><br>Minecraft.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/MobPsycho1.png" alt="MobPsycho1.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.03 MB"><br>MobPsycho1.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/MobPyscho2.png" alt="MobPyscho2.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.71 MB"><br>MobPyscho2.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/MrKrabs.jpeg" alt="MrKrabs.jpeg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1950" data-height="1080" data-size="0.79 MB"><br>MrKrabs.jpeg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/MrRobot.png" alt="MrRobot.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.87 MB"><br>MrRobot.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Narancia.png" alt="Narancia.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.53 MB"><br>Narancia.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/SBonnie.jpg" alt="SBonnie.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.08 MB"><br>SBonnie.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Shrimp.png" alt="Shrimp.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.26 MB"><br>Shrimp.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/SmilingFriends.png" alt="SmilingFriends.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="2120" data-height="1193" data-size="6.03 MB"><br>SmilingFriends.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Spinel.png" alt="Spinel.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.38 MB"><br>Spinel.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/StevenAndLapis.png" alt="StevenAndLapis.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.91 MB"><br>StevenAndLapis.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/StevenBetter.png" alt="StevenBetter.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.51 MB"><br>StevenBetter.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/TBoI.png" alt="TBoI.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1217" data-size="2.92 MB"><br>TBoI.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/TheLamb.png" alt="TheLamb.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.67 MB"><br>TheLamb.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/WBonnie.jpg" alt="WBonnie.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.08 MB"><br>WBonnie.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/Yoshikage.png" alt="Yoshikage.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="3.10 MB"><br>Yoshikage.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/blackholeinsideblackhole.png" alt="blackholeinsideblackhole.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.22 MB"><br>blackholeinsideblackhole.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/lolbit.png" alt="lolbit.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="0.18 MB"><br>lolbit.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/outlined-dgray-tagged.png" alt="outlined-dgray-tagged.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1079" data-size="0.03 MB"><br>outlined-dgray-tagged.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/wallpaperPCDAY.png" alt="wallpaperPCDAY.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="2.93 MB"><br>wallpaperPCDAY.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Computer/Homepage/wallpaperPCNIGHT.jpg" alt="wallpaperPCNIGHT.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1920" data-height="1080" data-size="1.62 MB"><br>wallpaperPCNIGHT.jpg</div></div></div><div class="image-category"><div class="category-title">Phone &gt; Homepage</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Dogma.jpg" alt="Dogma.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="2340" data-size="0.33 MB"><br>Dogma.jpg</div></div></div><div class="image-category"><div class="category-title">Phone &gt; Homepage &gt; Old</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Old/Kurzgesagt.png" alt="Kurzgesagt.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1800" data-height="4000" data-size="4.30 MB"><br>Kurzgesagt.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Old/KurzgesagtAlt.png" alt="KurzgesagtAlt.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="2400" data-size="1.60 MB"><br>KurzgesagtAlt.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Old/NiagaraCarrot1.png" alt="NiagaraCarrot1.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="2400" data-size="0.09 MB"><br>NiagaraCarrot1.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Old/NiagaraCarrot2.png" alt="NiagaraCarrot2.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="4320" data-height="9600" data-size="14.78 MB"><br>NiagaraCarrot2.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Homepage/Old/NiagaraCarrot3.png" alt="NiagaraCarrot3.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1800" data-height="4000" data-size="2.01 MB"><br>NiagaraCarrot3.png</div></div></div><div class="image-category"><div class="category-title">Phone &gt; Lockscreen</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Lockscreen/Gargantua.jpg" alt="Gargantua.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="1920" data-size="0.53 MB"><br>Gargantua.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Lockscreen/NekoLost.png" alt="NekoLost.png" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="2340" data-size="0.02 MB"><br>NekoLost.png</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Lockscreen/Spacy.jpg" alt="Spacy.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="720" data-height="1520" data-size="0.65 MB"><br>Spacy.jpg</div></div></div><div class="image-category"><div class="category-title">Phone &gt; Whatsapp</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Whatsapp/WhatsAppAll.jpg" alt="WhatsAppAll.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="720" data-height="1480" data-size="0.24 MB"><br>WhatsAppAll.jpg</div><div style="margin: 10px; display: inline-block; text-align: center;"><img src="Wallpapers/Phone/Whatsapp/WhatsAppAllNew.jpg" alt="WhatsAppAllNew.jpg" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="1080" data-height="2153" data-size="0.18 MB"><br>WhatsAppAllNew.jpg</div></div></div>
+<div class="full-screen-overlay" id="overlay">
+    <span class="close-button" id="closeButton">&times;</span>
+    <div class="file-info">
+        <div class="file-name" id="fileName"></div>
+        <div id="fileSize"></div>
+        <div id="fileDimensions"></div>
+    </div>
+    <img id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
+    <a id="downloadButton" class="download-button" href="" download>Download</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const categories = document.querySelectorAll('.category-title');
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                const imageContainer = category.nextElementSibling;
+                if (imageContainer.style.display === 'none' || imageContainer.style.display === '') {
+                    imageContainer.style.display = 'block';
+                } else {
+                    imageContainer.style.display = 'none';
+                }
+            });
+        });
+
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const overlay = document.getElementById('overlay');
+        const fullScreenImage = document.getElementById('fullScreenImage');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileDimensions = document.getElementById('fileDimensions');
+        const downloadButton = document.getElementById('downloadButton');
+        const closeButton = document.getElementById('closeButton');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', (e) => {
+                const img = e.target;
+                fullScreenImage.src = img.src;
+                fileName.textContent = img.alt;
+                fileSize.textContent = 'Size: ' + img.dataset.size;
+                fileDimensions.textContent = 'Dimensions: ' + img.dataset.width + 'x' + img.dataset.height;
+                downloadButton.href = img.src;
+                overlay.style.display = 'flex';
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
