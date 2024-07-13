@@ -15,6 +15,7 @@
             background-color: #1d1a21;
             color: #fff;
             margin: 50px;
+            font-size: 30px;
         }
 
         .info {
@@ -50,7 +51,7 @@
         }
 
         .category-title {
-            font-size: 3.5em;
+            font-size: 40px;
             margin: 10px 0;
             margin-top: 20px;
             color: #845EC2;
@@ -90,7 +91,7 @@
 
         .download-button {
             position: absolute;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
             padding: 10px 20px;
             background-color: #fff;
@@ -100,17 +101,6 @@
             font-size: 1em;
         }
 
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 5px 12px;
-            background-color: #fff;
-            color: #000;
-            border-radius: 50%;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
 
         .file-info {
             color: #fff;
@@ -211,7 +201,7 @@ if (count($imagesByFolder) > 0) {
             $imageHeight = $imageSize[1]; // Image height
             echo '<div style="margin: 10px; display: inline-block; text-align: center;">';
             echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
-            echo '<br>' . htmlspecialchars(basename($image));
+
             echo '</div>';
         }
         echo '</div>';
@@ -225,14 +215,14 @@ echo '<div class="stats">Wallpapers for Computer: <span class="countuppc">'.$pcc
 ?>
 
 <div class="full-screen-overlay" id="overlay">
-    <span class="close-button" id="closeButton">&times;</span>
+    <a id="downloadButton" class="download-button" href="" download>Download</a>
+    <span class="close-button" id="closeButton"></span>
     <div class="file-info">
         <div class="file-name" id="fileName"></div>
         <div id="fileSize"></div>
         <div id="fileDimensions"></div>
     </div>
     <img id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
-    <a id="downloadButton" class="download-button" href="" download>Download</a>
 </div>
 
 <script>
