@@ -37,6 +37,7 @@
             padding: 20px;
             border-top: 3px solid #845EC2;
             display: none;
+            text-align: center;
         }
 
         .image-category img {
@@ -200,7 +201,7 @@ if (count($imagesByFolder) > 0) {
             $imageWidth = $imageSize[0]; // Image width
             $imageHeight = $imageSize[1]; // Image height
             echo '<div style="margin: 10px; display: inline-block; text-align: center;">';
-            echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 200px; max-height: 200px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
+            echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 300px; max-height: 300px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
 
             echo '</div>';
         }
