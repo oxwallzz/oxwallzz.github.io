@@ -30,14 +30,13 @@
             cursor: pointer;
             margin: 10px 0;
             border: 3px solid #845EC2;
-            border-radius: 10px;
-            transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+            border-radius: 20px;
+            transition: border-color 0.2s ease-in-out;
             display: none;
         }
 
         .image-category:hover {
             border-color: #b8a4dd;
-            border-radius: 20px;
         }
 
         .image-category:hover .image-container {
@@ -150,7 +149,7 @@
 <h1>Welcome to the <a class="orange" href="https://orangexarot.github.io/">OrangeXarot</a>'s Wallpapers Collection</h1>
 <p class="info">Live, Laugh, Lemonade.</p>
 
-<p class="loading">Loading Images...</p>
+<p class="loading">Please Wait, Loading Images...</p>
 <?php
 // Directory path
 $rootDir = 'Wallpapers';
