@@ -92,7 +92,7 @@
             align-items: center;
             flex-direction: column;
             z-index: 1000;
-            backdrop-filter: blur(1px);
+            backdrop-filter: blur(3px);
         }
 
         .full-screen-image {
@@ -121,6 +121,7 @@
         .file-info {
             color: #fff;
             font-size: 1.2em;
+            text-shadow: 2px 2px 4px #000;
         }
 
         .file-up {
