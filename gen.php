@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <title>OrangeXarot's Wallpapers Collection</title>
     <style>
+        @import url("https://www.nerdfonts.com/assets/css/webfont.css");
+
         body {
             font-family: "Rubik", sans-serif;
             background-color: #1d1a21;
@@ -25,9 +28,13 @@
         .image-category {
             cursor: pointer;
             margin: 10px 0;
+            border: 3px solid #845EC2;
+            border-radius: 20px;
         }
 
         .image-container {
+            padding: 20px;
+            border-top: 3px solid #845EC2;
             display: none;
         }
 
@@ -43,10 +50,11 @@
         }
 
         .category-title {
-            font-size: 1.5em;
+            font-size: 3.5em;
             margin: 10px 0;
             margin-top: 20px;
             color: #845EC2;
+            padding: 20px;
         }
 
         .category-title:hover {
@@ -114,11 +122,16 @@
             font-weight: bold;
         }
 
+        .stats {
+            margin-top: 50px;
+            font-style: italic;
+        }
+
     </style>
 </head>
 <body>
 
-<h1>Welcome to the <span class="orange">OrangeXarot</span>'s Wallpapers Collection</h1>
+<h1>Welcome to the <a class="orange" href="https://orangexarot.github.io/">OrangeXarot</a>'s Wallpapers Collection</h1>
 <p class="info">Live, Laugh, Lemonade.</p>
 
 <?php
@@ -170,15 +183,27 @@ foreach ($imagesByFolder as &$images) {
 unset($images);
 
 // Check if there are any images
+
+$pccounter = 0;
+
+$phcounter = 0;
+
 if (count($imagesByFolder) > 0) {
     // Loop through the folders and display images under each folder
     foreach ($imagesByFolder as $folder => $images) {
         $folder = str_replace("Wallpapers/", "", $folder);
         $folder = str_replace("/", " > ", $folder);
         echo '<div class="image-category">';
-        echo '<div class="category-title">' . htmlspecialchars($folder) . '</div>';
+        if(str_starts_with($folder, "Computer"))
+            echo '<div class="category-title"><i class="nf nf-oct-device_desktop"></i> ' . htmlspecialchars($folder) . '</div>';
+        else if(str_starts_with($folder, "Phone"))
+            echo '<div class="category-title"><i class="nf nf-cod-device_mobile"></i> ' . htmlspecialchars($folder) . '</div>';
         echo '<div class="image-container">';
         foreach ($images as $image) {
+
+            if(str_starts_with($folder, "Computer")) $pccounter++;
+            else if(str_starts_with($folder, "Phone")) $phcounter++;
+
             $fileSize = filesize($image); // File size in bytes
             $fileSizeFormatted = number_format($fileSize / (1024 * 1024), 2) . ' MB';
             $imageSize = getimagesize($image); // Get image dimensions
@@ -195,6 +220,8 @@ if (count($imagesByFolder) > 0) {
 } else {
     echo "No images found in the directory '$rootDir'.";
 }
+
+echo '<div class="stats">Wallpapers for Computer: <span class="countuppc">'.$pccounter.'</span><br />Wallpapers for Phone: <span class="countupph">'.$phcounter.'</span></div>';
 ?>
 
 <div class="full-screen-overlay" id="overlay">
@@ -209,6 +236,41 @@ if (count($imagesByFolder) > 0) {
 </div>
 
 <script>
+    window.onload = () => {
+        const countuppc = document.querySelector(".countuppc");
+        const maxCount = countuppc.innerText;
+        const countupph = document.querySelector(".countupph");
+        const maxCountph = countupph.innerText;
+
+        countuppc.innerText = "0";
+        countupph.innerText = "0";
+
+
+        let counterpc = 0;
+        let counterph = 0;
+        const interval = 20;
+
+        const intervalId = setInterval(() => {
+            countuppc.innerText = counterpc;
+            counterpc++;
+            if (counterpc > maxCount) {
+                clearInterval(intervalId);
+            }
+        }, interval);
+
+
+        const intervalIdph = setInterval(() => {
+            countupph.innerText = counterph;
+            counterph++;
+            if (counterph > maxCountph) {
+                clearInterval(intervalIdph);
+            }
+        }, interval);
+
+
+
+    };
+
     document.addEventListener('DOMContentLoaded', (event) => {
         const categories = document.querySelectorAll('.category-title');
         categories.forEach(category => {
