@@ -91,10 +91,9 @@
         }
 
         .download-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             padding: 10px 20px;
+            margin-top: auto;
+            height: fit-content;
             background-color: #fff;
             color: #000;
             text-decoration: none;
@@ -105,8 +104,15 @@
 
         .file-info {
             color: #fff;
-            margin-bottom: 20px;
             font-size: 1.2em;
+        }
+
+        .file-up {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin-bottom: 20px;
         }
 
         .file-name {
@@ -216,12 +222,14 @@ echo '<div class="stats">Wallpapers for Computer: <span class="countuppc">'.$pcc
 ?>
 
 <div class="full-screen-overlay" id="overlay">
-    <a id="downloadButton" class="download-button" href="" download>Download</a>
     <span class="close-button" id="closeButton"></span>
+    <div class="file-up">
     <div class="file-info">
         <div class="file-name" id="fileName"></div>
         <div id="fileSize"></div>
         <div id="fileDimensions"></div>
+    </div>
+        <a id="downloadButton" class="download-button" href="" download>Download</a>
     </div>
     <img id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
 </div>
