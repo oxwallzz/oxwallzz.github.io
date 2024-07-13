@@ -32,6 +32,7 @@
             border: 3px solid #845EC2;
             border-radius: 10px;
             transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+            display: none;
         }
 
         .image-category:hover {
@@ -149,6 +150,7 @@
 <h1>Welcome to the <a class="orange" href="https://orangexarot.github.io/">OrangeXarot</a>'s Wallpapers Collection</h1>
 <p class="info">Live, Laugh, Lemonade.</p>
 
+<p class="loading">Loading Images...</p>
 <?php
 // Directory path
 $rootDir = 'Wallpapers';
@@ -281,8 +283,12 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
             }
         }, interval);
 
+        let categories = document.querySelectorAll(".image-category")
+        categories.forEach(function (category) {
+            category.style.display = "block";
+        })
 
-
+        document.querySelector(".loading").style.display = "none";
     };
 
     document.addEventListener('DOMContentLoaded', (event) => {
