@@ -253,16 +253,13 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
 </div>
 
 <script>
+
+    let countuppc;
+    let maxCount;
+    let countupph;
+    let maxCountph;
+
     window.onload = () => {
-        const countuppc = document.querySelector(".countuppc");
-        const maxCount = countuppc.innerText;
-        const countupph = document.querySelector(".countupph");
-        const maxCountph = countupph.innerText;
-
-        countuppc.innerText = "0";
-        countupph.innerText = "0";
-
-
         let counterpc = 0;
         let counterph = 0;
         const interval = 20;
@@ -289,6 +286,13 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
     };
 
     document.addEventListener('DOMContentLoaded', (event) => {
+        countuppc = document.querySelector(".countuppc");
+        maxCount = countuppc.innerText;
+        countupph = document.querySelector(".countupph");
+        maxCountph = countupph.innerText;
+
+        countuppc.innerText = "0";
+        countupph.innerText = "0";
         const categories = document.querySelectorAll('.category-title');
         categories.forEach(category => {
             category.addEventListener('click', () => {
