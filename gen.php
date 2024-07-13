@@ -30,7 +30,21 @@
             cursor: pointer;
             margin: 10px 0;
             border: 3px solid #845EC2;
+            border-radius: 10px;
+            transition: border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+        }
+
+        .image-category:hover {
+            border-color: #b8a4dd;
             border-radius: 20px;
+        }
+
+        .image-category:hover .image-container {
+            border-color: #b8a4dd;
+        }
+
+        .image-category:hover .category-title {
+            color: #b8a4dd;
         }
 
         .image-container {
@@ -38,10 +52,13 @@
             border-top: 3px solid #845EC2;
             display: none;
             text-align: center;
+            background-color: rgba(132, 94, 194, 0.06);
+            border-radius: 0 0 20px 20px;
+            transition: border-color 0.2s ease-in-out
         }
 
         .image-category img {
-            border-radius: 5px;
+            border-radius: 10px;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             transform: scale(1);
         }
@@ -57,11 +74,10 @@
             margin-top: 20px;
             color: #845EC2;
             padding: 20px;
+            transition: color 0.2s ease-in-out;
         }
 
-        .category-title:hover {
-            color: #b8a4dd;
-        }
+
 
         .full-screen-overlay {
             position: fixed;
@@ -120,6 +136,8 @@
         }
 
         .stats {
+            opacity: 0.6;
+            font-size: 20px;
             margin-top: 50px;
             font-style: italic;
         }
@@ -218,7 +236,7 @@ if (count($imagesByFolder) > 0) {
     echo "No images found in the directory '$rootDir'.";
 }
 
-echo '<div class="stats">Wallpapers for Computer: <span class="countuppc">'.$pccounter.'</span><br />Wallpapers for Phone: <span class="countupph">'.$phcounter.'</span></div>';
+echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccounter.'</span><br />Phone Wallpapers: <span class="countupph">'.$phcounter.'</span></div>';
 ?>
 
 <div class="full-screen-overlay" id="overlay">
