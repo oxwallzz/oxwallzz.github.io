@@ -415,12 +415,14 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
         closeButton.addEventListener('click', () => {
             overlay.style.display = 'none';
             document.body.style.overflow = "";
+            biggerCounter = 0;
         });
 
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
                 overlay.style.display = 'none';
                 document.body.style.overflow = "";
+                biggerCounter = 0;
             }
         });
     });
