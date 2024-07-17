@@ -143,6 +143,34 @@
             font-style: italic;
         }
 
+
+        .full-screen-image-bigger {
+            position: fixed;
+            width: 100%;
+            height: auto;
+        }
+
+        .full-screen-image-bogger {
+            position: fixed;
+            width: auto;
+            height: 100%;
+        }
+
+        .full-screen-image-begger {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .display-mode {
+            position: fixed;
+            bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.38);
+            padding: 10px 20px;
+            opacity: 0;
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+        }
     </style>
 </head>
 <body>
@@ -251,15 +279,66 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
     </div>
         <a id="downloadButton" class="download-button" href="" download>Download</a>
     </div>
-    <img id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
+    <img onclick="bigger()" id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
+    <div class="display-mode"></div>
 </div>
 
 <script>
+
+    let biggerCounter = 0;
 
     let countuppc;
     let maxCount;
     let countupph;
     let maxCountph;
+
+    function bigger() {
+        const fullScreenImage = document.getElementById('fullScreenImage');
+        const fileUp = document.querySelector(".file-up");
+        const displayMode = document.querySelector(".display-mode");
+        biggerCounter = (biggerCounter + 1) % 4;
+
+        switch(biggerCounter) {
+            case 0:
+                fullScreenImage.classList.add("full-screen-image");
+                fullScreenImage.classList.remove("full-screen-image-bigger");
+                fullScreenImage.classList.remove("full-screen-image-bogger");
+                fullScreenImage.classList.remove("full-screen-image-begger");
+                fileUp.style.display = "flex";
+                displayMode.innerText = "";
+                displayMode.style.opacity = 0;
+                break;
+            case 1:
+                fullScreenImage.classList.remove("full-screen-image");
+                fullScreenImage.classList.add("full-screen-image-bigger");
+                fullScreenImage.classList.remove("full-screen-image-bogger");
+                fullScreenImage.classList.remove("full-screen-image-begger");
+                fileUp.style.display = "none";
+                displayMode.innerText = "Display Mode: PC";
+                displayMode.style.opacity = 1;
+                break;
+            case 2:
+                fullScreenImage.classList.remove("full-screen-image");
+                fullScreenImage.classList.remove("full-screen-image-bigger");
+                fullScreenImage.classList.add("full-screen-image-bogger");
+                fullScreenImage.classList.remove("full-screen-image-begger");
+                fileUp.style.display = "none";
+                displayMode.innerText = "Display Mode: Phone";
+                displayMode.style.opacity = 1;
+                break;
+            case 3:
+                fullScreenImage.classList.remove("full-screen-image");
+                fullScreenImage.classList.remove("full-screen-image-bigger");
+                fullScreenImage.classList.remove("full-screen-image-bogger");
+                fullScreenImage.classList.add("full-screen-image-begger");
+                fileUp.style.display = "none";
+                displayMode.innerText = "Display Mode: Stretched";
+                displayMode.style.opacity = 1;
+                break;
+        }
+
+    }
+
 
     window.onload = () => {
         let counterpc = 0;
@@ -342,6 +421,8 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
             }
         });
     });
+
+
 </script>
 
 </body>
