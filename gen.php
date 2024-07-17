@@ -279,7 +279,7 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
     </div>
         <a id="downloadButton" class="download-button" href="" download>Download</a>
     </div>
-    <img onclick="bigger()" id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
+    <img onclick="bigger(true)" id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
     <div class="display-mode"></div>
 </div>
 
@@ -292,11 +292,12 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
     let countupph;
     let maxCountph;
 
-    function bigger() {
+    function bigger(increment) {
         const fullScreenImage = document.getElementById('fullScreenImage');
         const fileUp = document.querySelector(".file-up");
         const displayMode = document.querySelector(".display-mode");
-        biggerCounter = (biggerCounter + 1) % 4;
+        if(increment)
+            biggerCounter = (biggerCounter + 1) % 4;
 
         switch(biggerCounter) {
             case 0:
@@ -370,7 +371,7 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
         document.querySelector(".loading").style.display = "none";
     };
 
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', () => {
         countuppc = document.querySelector(".countuppc");
         maxCount = countuppc.innerText;
         countupph = document.querySelector(".countupph");
@@ -409,6 +410,7 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
                 downloadButton.href = img.src;
                 overlay.style.display = 'flex';
                 document.body.style.overflow = "hidden";
+                bigger(false);
             });
         });
 
@@ -429,9 +431,6 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
 
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
