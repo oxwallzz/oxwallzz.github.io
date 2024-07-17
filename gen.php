@@ -408,16 +408,19 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
                 fileDimensions.textContent = 'Dimensions: ' + img.dataset.width + 'x' + img.dataset.height;
                 downloadButton.href = img.src;
                 overlay.style.display = 'flex';
+                document.body.style.overflow = "hidden";
             });
         });
 
         closeButton.addEventListener('click', () => {
             overlay.style.display = 'none';
+            document.body.style.overflow = "";
         });
 
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
                 overlay.style.display = 'none';
+                document.body.style.overflow = "";
             }
         });
     });
