@@ -68,6 +68,13 @@
             box-shadow: 0 0 10px 5px #845EC2;
         }
 
+        .image-category img:hover .new-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px 5px #845EC2;
+        }
+
+
+
         .category-title {
             font-size: 40px;
             margin: 10px 0;
@@ -171,6 +178,24 @@
             border-radius: 10px;
             backdrop-filter: blur(20px);
         }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4f00;
+            color: white;
+            padding: 5px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+
     </style>
 </head>
 <body>
@@ -234,29 +259,56 @@ $pccounter = 0;
 $phcounter = 0;
 
 if (count($imagesByFolder) > 0) {
-    // Loop through the folders and display images under each folder
     foreach ($imagesByFolder as $folder => $images) {
         $folder = str_replace("Wallpapers/", "", $folder);
         $folder = str_replace("/", " > ", $folder);
         echo '<div class="image-category">';
-        if(str_starts_with($folder, "Computer"))
+        if (str_starts_with($folder, "Computer"))
             echo '<div class="category-title"><i class="nf nf-oct-device_desktop"></i> ' . htmlspecialchars($folder) . '</div>';
-        else if(str_starts_with($folder, "Phone"))
+        else if (str_starts_with($folder, "Phone"))
             echo '<div class="category-title"><i class="nf nf-cod-device_mobile"></i> ' . htmlspecialchars($folder) . '</div>';
         echo '<div class="image-container">';
+
+        // Creiamo un array con le immagini e i loro timestamp di modifica
+        $imagesWithTimestamps = [];
         foreach ($images as $image) {
+            $imagesWithTimestamps[] = ['path' => $image, 'time' => filemtime($image)];
+        }
 
-            if(str_starts_with($folder, "Computer")) $pccounter++;
-            else if(str_starts_with($folder, "Phone")) $phcounter++;
+        // Ordiniamo le immagini per timestamp di modifica, dalla più recente alla meno recente
+        usort($imagesWithTimestamps, function($a, $b) {
+            return $b['time'] - $a['time'];
+        });
 
-            $fileSize = filesize($image); // File size in bytes
+        // Identifichiamo le ultime tre immagini caricate
+        $newBadgeImages = array_slice($imagesWithTimestamps, 0, 3);
+
+        // Riordiniamo le immagini alfabeticamente per visualizzarle in ordine
+        usort($imagesWithTimestamps, function($a, $b) {
+            return strcasecmp(basename($a['path']), basename($b['path']));
+        });
+
+        // Mostriamo le immagini in ordine alfabetico con eventuale badge "new"
+        foreach ($imagesWithTimestamps as $imageData) {
+            $image = $imageData['path'];
+
+            if (str_starts_with($folder, "Computer")) $pccounter++;
+            else if (str_starts_with($folder, "Phone")) $phcounter++;
+
+            $fileSize = filesize($image);
             $fileSizeFormatted = number_format($fileSize / (1024 * 1024), 2) . ' MB';
-            $imageSize = getimagesize($image); // Get image dimensions
-            $imageWidth = $imageSize[0]; // Image width
-            $imageHeight = $imageSize[1]; // Image height
-            echo '<div style="margin: 10px; display: inline-block; text-align: center;">';
-            echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 300px; max-height: 300px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
+            $imageSize = getimagesize($image);
+            $imageWidth = $imageSize[0];
+            $imageHeight = $imageSize[1];
 
+            echo '<div style="margin: 10px; display: inline-block; text-align: center; position: relative;">';
+
+            // Badge "new" per le ultime 3 immagini caricate
+            if (in_array($imageData, $newBadgeImages)) {
+                echo '<span class="new-badge">New</span>';
+            }
+
+            echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 300px; max-height: 300px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
             echo '</div>';
         }
         echo '</div>';
