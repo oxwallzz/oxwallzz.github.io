@@ -292,6 +292,10 @@ if (count($imagesByFolder) > 0) {
         foreach ($imagesWithTimestamps as $imageData) {
             $image = $imageData['path'];
 
+            // Determine the low-resolution image path
+            $lowResImage = str_replace("Wallpapers/", "Wallpapers/lowres/", $image);
+
+            // Add to the counter based on the folder type
             if (str_starts_with($folder, "Computer")) $pccounter++;
             else if (str_starts_with($folder, "Phone")) $phcounter++;
 
@@ -303,14 +307,21 @@ if (count($imagesByFolder) > 0) {
 
             echo '<div style="margin: 10px; display: inline-block; text-align: center; position: relative;">';
 
-            // Badge "new" per le ultime 3 immagini caricate
+            // Badge "new" for the last 3 uploaded images
             if (in_array($imageData, $newBadgeImages)) {
                 echo '<span class="new-badge">New</span>';
             }
 
-            echo '<img src="' . $image . '" alt="' . basename($image) . '" style="max-width: 300px; max-height: 300px;" class="thumbnail" data-width="' . $imageWidth . '" data-height="' . $imageHeight . '" data-size="' . $fileSizeFormatted . '">';
+            echo '<img src="' . $lowResImage . '" alt="' . basename($image) . '" 
+        style="max-width: 300px; max-height: 300px;" 
+        class="thumbnail" 
+        data-full-res="' . $image . '" 
+        data-width="' . $imageWidth . '" 
+        data-height="' . $imageHeight . '" 
+        data-size="' . $fileSizeFormatted . '">';
             echo '</div>';
         }
+
         echo '</div>';
         echo '</div>';
     }
@@ -455,16 +466,18 @@ echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccount
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', (e) => {
                 const img = e.target;
-                fullScreenImage.src = img.src;
+                const fullResImage = img.getAttribute('data-full-res');
+                fullScreenImage.src = fullResImage; // Load high-resolution image
                 fileName.textContent = img.alt;
                 fileSize.textContent = 'Size: ' + img.dataset.size;
                 fileDimensions.textContent = 'Dimensions: ' + img.dataset.width + 'x' + img.dataset.height;
-                downloadButton.href = img.src;
+                downloadButton.href = fullResImage;
                 overlay.style.display = 'flex';
                 document.body.style.overflow = "hidden";
                 bigger(false);
             });
         });
+
 
         closeButton.addEventListener('click', () => {
             overlay.style.display = 'none';

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+echo "Generating low res images"
+./lowres.sh
+
 # python image.py
 echo "Starting php server..."
 php -S localhost:8000 > /dev/null 2>&1 & sleep 1
