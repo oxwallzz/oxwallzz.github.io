@@ -103,19 +103,37 @@
         }
 
         .full-screen-image {
-            max-width: 90%;
-            max-height: 80%;
-            box-shadow: 0 0 10px 5px #845EC2;
-            animation: wow 5s infinite;
-        }
+            width: 90%;
+            height: 80%;
 
+            object-fit: contain;
+
+        }
+        
+        .full-screen-image img {
+        }
+        
         @keyframes wow {
             50% {box-shadow: 0 0 15px 10px #845EC2;}
         }
 
-        .download-button {
+        .buttons {
+            margin-top: auto;
+        }
+        
+        .close-button {
             padding: 10px 20px;
             margin-top: auto;
+            height: fit-content;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .download-button {
+            padding: 10px 20px;
             height: fit-content;
             background-color: #fff;
             color: #000;
@@ -195,6 +213,24 @@
             z-index: 1;
         }
 
+        #loadingMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.38);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            display: block; 
+            z-index: 999999;
+        }
+
+
+
 
     </style>
 </head>
@@ -203,7 +239,7 @@
 <h1>Welcome to the <a class="orange" href="https://orangexarot.github.io/">OrangeXarot</a>'s Wallpapers Collection</h1>
 <p class="info">Live, Laugh, Lemonade.</p>
 
-<p class="loading">Please Wait, Loading Images...</p>
+<p class="loading">Please Wait, Loading Previews...</p>
 <div class="image-category"><div class="category-title"><i class="nf nf-oct-device_desktop"></i> Computer</div><div class="image-container"><div style="margin: 10px; display: inline-block; text-align: center; position: relative;"><img src="Wallpapers/lowres/Computer/BH_Interstellar.png" alt="BH_Interstellar.png" 
         style="max-width: 300px; max-height: 300px;" 
         class="thumbnail" 
@@ -962,18 +998,25 @@
         data-height="598" 
         data-size="0.03 MB"></div></div></div><div class="stats">Computer Wallpapers: <span class="countuppc">57</span><br />Phone Wallpapers: <span class="countupph">6</span></div>
 <div class="full-screen-overlay" id="overlay">
-    <span class="close-button" id="closeButton"></span>
+
+    
+    <div id="loadingMessage" class="loading-message">Loading High Resolution Image...</div>
     <div class="file-up">
-    <div class="file-info">
-        <div class="file-name" id="fileName"></div>
-        <div id="fileSize"></div>
-        <div id="fileDimensions"></div>
-    </div>
-        <a id="downloadButton" class="download-button" href="" download>Download</a>
+        <div class="file-info">
+            <div class="file-name" id="fileName"></div>
+            <div id="fileSize"></div>
+            <div id="fileDimensions"></div>
+        </div>
+        <div class="buttons">
+            <span class="close-button" id="closeButton">×</span>
+            <a id="downloadButton" class="download-button" href="" download>Download</a>
+        </div>
     </div>
     <img onclick="bigger(true)" id="fullScreenImage" class="full-screen-image" src="" alt="Full Screen Image">
     <div class="display-mode"></div>
 </div>
+
+
 
 <script>
 
@@ -1091,22 +1134,56 @@
         const fileDimensions = document.getElementById('fileDimensions');
         const downloadButton = document.getElementById('downloadButton');
         const closeButton = document.getElementById('closeButton');
+        const loadingMessage = document.getElementById('loadingMessage');
 
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', (e) => {
                 const img = e.target;
-                const fullResImage = img.getAttribute('data-full-res');
-                fullScreenImage.src = fullResImage; // Load high-resolution image
+
+                // Show the loading message immediately
+                loadingMessage.style.display = 'block';
+                fullScreenImage.style.display = 'block';
+
+                const highResSrc = img.src.replace('lowres/', ''); // Adjust this path to match your structure
+                const imgLoader = new Image(); // Preload image
+
+                imgLoader.src = highResSrc;
+                
+                // Update the file details
+                fullScreenImage.src = img.src;
                 fileName.textContent = img.alt;
                 fileSize.textContent = 'Size: ' + img.dataset.size;
                 fileDimensions.textContent = 'Dimensions: ' + img.dataset.width + 'x' + img.dataset.height;
-                downloadButton.href = fullResImage;
+                downloadButton.href = highResSrc;
+                
                 overlay.style.display = 'flex';
                 document.body.style.overflow = "hidden";
-                bigger(false);
+                // Fetch the high-res image and preload it
+                
+
+                imgLoader.onload = () => {
+                    // Once the high-res image is loaded, update the full screen image
+                    fullScreenImage.src = highResSrc;
+                    fullScreenImage.style.display = 'block';
+                    loadingMessage.style.display = 'none'; // Hide loading message
+
+                    // Update the file details
+                    fileName.textContent = img.alt;
+                    fileSize.textContent = 'Size: ' + img.dataset.size;
+                    fileDimensions.textContent = 'Dimensions: ' + img.dataset.width + 'x' + img.dataset.height;
+                    downloadButton.href = highResSrc;
+
+                    overlay.style.display = 'flex';
+                    document.body.style.overflow = "hidden";
+                    bigger(false);
+                };
+
+                imgLoader.onerror = () => {
+                    // Handle any errors during image loading
+                    loadingMessage.textContent = 'Failed to load image';
+                };
             });
         });
-
 
         closeButton.addEventListener('click', () => {
             overlay.style.display = 'none';
