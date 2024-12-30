@@ -18,8 +18,13 @@ resize_images() {
   for img in "$source_dir"*; do
     if [[ -f "$img" ]]; then
       filename=$(basename "$img")
-      convert "$img" -resize 300 "$target_dir$filename"
-      echo "Resized $img -> $target_dir$filename"
+      target_file="$target_dir$filename"
+      if [[ -f "$target_file" ]]; then
+        echo "Skipping $img -> $target_file (already exists)"
+      else
+        convert "$img" -resize 300 "$target_file"
+        echo "Resized $img -> $target_file"
+      fi
     fi
   done
 }
