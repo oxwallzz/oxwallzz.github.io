@@ -22,7 +22,7 @@
             margin-bottom: 50px;
         }
 
-        .orange {
+        a, .orange {
             color: #ff4f00;
         }
 
@@ -365,7 +365,7 @@ if (count($imagesByFolder) > 0) {
     echo "No images found in the directory '$rootDir'.";
 }
 
-echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccounter.'</span><br />Phone Wallpapers: <span class="countupph">'.$phcounter.'</span></div>';
+echo '<div class="stats">Computer Wallpapers: <span class="countuppc">'.$pccounter.'</span><br />Phone Wallpapers: <span class="countupph">'.$phcounter.'</span><br /><a href="Wallpapers.zip">Download All</a></div>';
 ?>
 
 <div class="full-screen-overlay" id="overlay">

@@ -4,7 +4,9 @@
 echo "Generating low res images"
 ./lowres.sh
 
-#!/bin/bash
+echo "Making zip file..."
+rm Wallpapers.zip
+zip -r Wallpapers.zip Wallpapers/Computer Wallpapers/Phone
 
 cp index.html index_original.html
 
