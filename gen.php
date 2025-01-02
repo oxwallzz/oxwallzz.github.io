@@ -253,7 +253,7 @@ function getImagesByFolder($dir, &$imagesByFolder) {
             // Loop through the files in the directory
             while (($file = readdir($dh)) !== false) {
                 // Skip current and parent directory entries
-                if ($file == '.' || $file == '..') {
+                if ($file == '.' || $file == '..' || $file == 'lowres') {
                     continue;
                 }
                 $filePath = $dir . '/' . $file;
@@ -330,6 +330,7 @@ if (count($imagesByFolder) > 0) {
 
             // Determine the low-resolution image path
             $lowResImage = str_replace("Wallpapers/", "Wallpapers/lowres/", $image);
+       
 
             // Add to the counter based on the folder type
             if (str_starts_with($folder, "Computer")) $pccounter++;
